@@ -1,0 +1,20 @@
+[project]
+name = "info-sec"
+version = "0.1.0"
+description = "Projeto Integrador: Segurança Aplicada ao Desenvolvimento"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "cryptography",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["entrega-1"]

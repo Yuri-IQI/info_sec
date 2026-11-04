@@ -1,0 +1,19 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Segredos e chaves: nunca versionar
+.env
+*.pem
+*.key
+*.der
+
+# Bancos locais
+*.db
+*.sqlite3
+
+# Vídeos de evidência: entregar por link
+*.mp4
+*.mkv
