@@ -1,0 +1,48 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.18, pytest-9.2.0, pluggy-1.7.0 -- [REDACTED]
+cachedir: .pytest_cache
+rootdir: [REDACTED]
+configfile: pyproject.toml
+testpaths: entrega-1
+collecting ... collected 38 items
+
+entrega-1/test_entrega1.py::test_decypher_returns_original_message PASSED [  2%]
+entrega-1/test_entrega1.py::test_each_message_uses_new_key_and_nonce PASSED [  5%]
+entrega-1/test_entrega1.py::test_tampered_content_is_rejected[cyphered] PASSED [  7%]
+entrega-1/test_entrega1.py::test_tampered_content_is_rejected[nonce] PASSED [ 10%]
+entrega-1/test_entrega1.py::test_tampered_wrapped_key_is_rejected PASSED [ 13%]
+entrega-1/test_entrega1.py::test_wrong_private_key_cannot_decypher PASSED [ 15%]
+entrega-1/test_entrega1.py::test_valid_signature_is_accepted PASSED      [ 18%]
+entrega-1/test_entrega1.py::test_tampered_message_is_rejected PASSED     [ 21%]
+entrega-1/test_entrega1.py::test_tampered_signature_is_rejected PASSED   [ 23%]
+entrega-1/test_entrega1.py::test_wrong_public_key_is_rejected PASSED     [ 26%]
+entrega-1/test_entrega1.py::test_generates_all_files_when_folder_does_not_exist PASSED [ 28%]
+entrega-1/test_entrega1.py::test_reuses_existing_keys PASSED             [ 31%]
+entrega-1/test_entrega1.py::test_private_keys_are_protected_by_password PASSED [ 34%]
+entrega-1/test_entrega1.py::test_saving_does_not_overwrite_keys PASSED   [ 36%]
+entrega-1/test_entrega1.py::test_incomplete_key_set_is_reported PASSED   [ 39%]
+entrega-1/test_entrega1.py::test_missing_or_short_password_is_rejected[None] PASSED [ 42%]
+entrega-1/test_entrega1.py::test_missing_or_short_password_is_rejected[] PASSED [ 44%]
+entrega-1/test_entrega1.py::test_missing_or_short_password_is_rejected[curta] PASSED [ 47%]
+entrega-1/test_exec.py::test_unsigned_message_is_restored_with_warning PASSED [ 50%]
+entrega-1/test_exec.py::test_file_does_not_contain_plain_message PASSED  [ 52%]
+entrega-1/test_exec.py::test_signed_message_is_verified_and_restored PASSED [ 55%]
+entrega-1/test_exec.py::test_tamper_on_existing_unsigned_message_is_detected PASSED [ 57%]
+entrega-1/test_exec.py::test_tamper_on_existing_signed_message_is_detected PASSED [ 60%]
+entrega-1/test_exec.py::test_tamper_together_with_message_is_detected PASSED [ 63%]
+entrega-1/test_exec.py::test_any_changed_signed_field_is_rejected[cyphered_key] PASSED [ 65%]
+entrega-1/test_exec.py::test_any_changed_signed_field_is_rejected[nonce] PASSED [ 68%]
+entrega-1/test_exec.py::test_any_changed_signed_field_is_rejected[signature] PASSED [ 71%]
+entrega-1/test_exec.py::test_removed_signature_is_rejected_when_required PASSED [ 73%]
+entrega-1/test_exec.py::test_tamper_changes_only_the_cyphered_content PASSED [ 76%]
+entrega-1/test_exec.py::test_tamper_without_file_is_reported PASSED      [ 78%]
+entrega-1/test_exec.py::test_decypher_does_not_generate_keys PASSED      [ 81%]
+entrega-1/test_exec.py::test_cypher_without_signature_does_not_need_password PASSED [ 84%]
+entrega-1/test_exec.py::test_wrong_password_is_reported PASSED           [ 86%]
+entrega-1/test_exec.py::test_invalid_file_is_reported PASSED             [ 89%]
+entrega-1/test_exec.py::test_invalid_arguments_are_rejected[args0] PASSED [ 92%]
+entrega-1/test_exec.py::test_invalid_arguments_are_rejected[args1] PASSED [ 94%]
+entrega-1/test_exec.py::test_invalid_arguments_are_rejected[args2] PASSED [ 97%]
+entrega-1/test_exec.py::test_invalid_arguments_are_rejected[args3] PASSED [100%]
+
+============================= 38 passed in 5.51s ==============================

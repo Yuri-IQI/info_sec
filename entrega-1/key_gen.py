@@ -27,18 +27,25 @@ def generate_keys(save_to_file=False):
 
     return keys
 
-def load_or_generate_keys():
+def ensure_keys():
     paths = [path for name in KEY_NAMES for path in key_paths(name)]
     existing = [path for path in paths if path.exists()]
 
     if not existing:
-        return generate_keys(save_to_file=True)
-
-    if len(existing) < len(paths):
+        generate_keys(save_to_file=True)
+    elif len(existing) < len(paths):
         missing = [path.name for path in paths if not path.exists()]
         raise FileNotFoundError(f"Conjunto de chaves incompleto em {KEYS_DIR}. Faltam: {', '.join(missing)}")
 
+def load_or_generate_keys():
+    ensure_keys()
     return load_keys()
+
+def load_private_key(name):
+    return serialization.load_pem_private_key(key_paths(name)[0].read_bytes(), get_key_password())
+
+def load_public_key(name):
+    return serialization.load_pem_public_key(key_paths(name)[1].read_bytes())
 
 def load_keys():
     password = get_key_password()
@@ -61,7 +68,7 @@ def save_keys_to_file(keys):
             if path.exists():
                 raise FileExistsError(f"A chave {path} já existe e não será sobrescrita.")
 
-    KEYS_DIR.mkdir(exist_ok=True)
+    KEYS_DIR.mkdir(parents=True, exist_ok=True)
 
     for name, pair in keys.items():
         save_key_pair(name, pair["private_key"], pair["public_key"], password)

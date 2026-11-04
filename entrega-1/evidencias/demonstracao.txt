@@ -1,0 +1,5 @@
+Mensagem cifrada e assinada em [REDACTED]
+Assinatura vßlida
+Mensagem decifrada: mensagem de teste
+Conte·do cifrado adulterado em [REDACTED]
+Falha: assinatura invßlida; o pacote foi alterado ou nÒo veio deste remetente.

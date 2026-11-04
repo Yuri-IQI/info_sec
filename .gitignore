@@ -17,3 +17,6 @@ __pycache__/
 # Vídeos de evidência: entregar por link
 *.mp4
 *.mkv
+
+# Mensagens cifradas da demonstração
+entrega-1/data/
