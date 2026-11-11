@@ -1,9 +1,7 @@
 # PROJETO INTEGRADOR | SEGURANÇA APLICADA AO DESENVOLVIMENTO
 ## Entrega 1: Criptografia assimétrica e confiança
 
-O código fica em [entrega-1](entrega-1/), e as evidências de execução em [entrega-1/evidencias](entrega-1/evidencias/).
-
-### Problema e requisitos
+### Problema e objetivo
 
 Situação-problema: Uma aplicação precisa proteger uma mensagem enviada a outro serviço e verificar sua autenticidade.
 
@@ -28,14 +26,14 @@ gestão de chaves e limites da solução.
 
 | Finalidade | Algoritmo | Parâmetros | Justificativa |
 | --- | --- | --- | --- |
-| Cifrar o conteúdo | AES-GCM | Chave de 256 bits e nonce de 96 bits, ambos novos a cada mensagem | Cifra com autenticação: detecta alterações e é rápida para mensagens de qualquer tamanho |
+| Cifrar o conteúdo | AES-GCM | Chave de 256 bits e nonce de 96 bits, recalculados a cada mensagem | Cifra com autenticação que detecta alterações e é rápida para mensagens de qualquer tamanho |
 | Proteger a chave AES | RSA-OAEP | Chave de 3072 bits, expoente 65537, SHA-256 e MGF1 com SHA-256 | Permite enviar a chave AES a quem tem a chave privada. O OAEP é o preenchimento recomendado para cifragem com RSA |
 | Assinar | Ed25519 | Parâmetros fixos do algoritmo | Assinaturas curtas e rápidas, sem parâmetros que possam ser mal configurados |
 | Proteger as chaves privadas | PKCS#8 cifrado com `BestAvailableEncryption` | Na versão usada: PBES2, PBKDF2 com HMAC-SHA256 e AES-256-CBC | Um arquivo de chave vazado não pode ser usado sem a senha |
 
-O RSA não é adequado para cifrar mensagens longas diretamente. Por isso, a cifragem é híbrida: o AES cifra o conteúdo, e o RSA protege apenas a chave AES.
+O RSA não é adequado para cifrar mensagens longas diretamente. Por isso, a cifragem é híbrida, usando o AES para cifrar o conteúdo, e o RSA para proteger apenas a chave AES.
 
-Cada par de chaves tem uma única finalidade: o RSA é usado na cifragem, e o Ed25519, na assinatura.
+Cada par de chaves tem uma única finalidade, o RSA é usado na cifragem, e o Ed25519, na assinatura.
 
 #### Sigilo e autenticidade
 
@@ -63,13 +61,13 @@ Este projeto não usa certificados nem PKI. As chaves públicas são lidas de ar
 
 | Arquivo | Função |
 | --- | --- |
-| [key_gen.py](entrega-1/key_gen.py) | Gera, salva e carrega as chaves |
-| [encrypt.py](entrega-1/encrypt.py) | Funções `cypher` e `decypher` |
-| [signature.py](entrega-1/signature.py) | Funções `sign` e `verify` |
-| [package_file.py](entrega-1/package_file.py) | Salva, lê e adultera o pacote cifrado em arquivo |
-| [exec_cypher.py](entrega-1/exec_cypher.py) | Cifra e assina a mensagem, ou adultera um pacote já cifrado |
-| [exec_decypher.py](entrega-1/exec_decypher.py) | Verifica a assinatura e restaura a mensagem |
-| [test_entrega1.py](entrega-1/test_entrega1.py) e [test_exec.py](entrega-1/test_exec.py) | Testes automatizados |
+| [key_gen.py](key_gen.py) | Gera, salva e carrega as chaves |
+| [encrypt.py](encrypt.py) | Funções `cypher` e `decypher` |
+| [signature.py](signature.py) | Funções `sign` e `verify` |
+| [package_file.py](package_file.py) | Salva, lê e adultera o pacote cifrado em arquivo |
+| [exec_cypher.py](exec_cypher.py) | Cifra e assina a mensagem, ou adultera um pacote já cifrado |
+| [exec_decypher.py](exec_decypher.py) | Verifica a assinatura e restaura a mensagem |
+| [test_entrega1.py](test_entrega1.py) e [test_exec.py](test_exec.py) | Testes automatizados |
 
 #### Preparação
 
@@ -164,10 +162,10 @@ Os testes cobrem:
 
 | Evidência | O que comprova |
 | --- | --- |
-| [testes.txt](entrega-1/evidencias/testes.txt) | Resultado dos testes automatizados |
-| [chave_cifrada.txt](entrega-1/evidencias/chave_cifrada.txt) | A chave privada está cifrada no disco (somente a primeira linha do arquivo) |
-| [chaves_ignoradas.txt](entrega-1/evidencias/chaves_ignoradas.txt) | As chaves ficam fora do versionamento |
-| `demonstracao.txt` | Saída do fluxo de cifrar, restaurar, adulterar e rejeitar |
+| [testes.txt](evidencias/testes.txt) | Resultado dos testes automatizados |
+| [chave_cifrada.txt](evidencias/chave_cifrada.txt) | A chave privada está cifrada no disco (somente a primeira linha do arquivo) |
+| [chaves_ignoradas.txt](evidencias/chaves_ignoradas.txt) | As chaves ficam fora do versionamento |
+| [demonstracao.txt](evidencias/demonstracao.txt) | Saída do fluxo de cifrar, restaurar, adulterar e rejeitar |
 
 ### Riscos, limitações e melhorias
 
@@ -182,3 +180,15 @@ Os testes cobrem:
 | Permissões dos arquivos não são restringidas pelo script | Outros usuários podem conseguir copiar as chaves cifradas | Restringir o acesso à pasta ou usar um HSM ou KMS |
 | Sem rotação nem revogação de chaves | Uma chave comprometida continuaria válida | Definir validade, rotação e revogação |
 | RSA e Ed25519 não são resistentes a computadores quânticos | Dados guardados hoje podem ser expostos no futuro | Planejar a migração para algoritmos pós-quânticos |
+
+### Referências consultadas
+
+OPEN WORLDWIDE APPLICATION SECURITY PROJECT (OWASP). OWASP Top 10:2025. [S. l.]: OWASP Foundation, 2025. Disponível em: https://top10.owasp.org/. Acesso em: 11 nov. 2026.
+
+OPEN WORLDWIDE APPLICATION SECURITY PROJECT (OWASP). OWASP Application Security Verification Standard: version 4.0.3. [S. l.]: OWASP Foundation, 2021. Disponível em: https://owasp.org/www-project-application-security-verification-standard/. Acesso em: 11 nov. 2026.
+
+NATIONAL INSTITUTE OF STANDARDS AND TECHNOLOGY (NIST). NIST Cybersecurity Framework (CSF) 2.0. Gaithersburg: NIST, 2024. (NIST Cybersecurity White Paper, NIST CSWP 29). DOI: https://doi.org/10.6028/NIST.CSWP.29. Disponível em: https://www.nist.gov/cyberframework. Acesso em: 11 nov. 2026.
+
+ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS (ABNT). ABNT NBR ISO/IEC 27001: Segurança da informação, segurança cibernética e proteção da privacidade — Sistemas de gestão de segurança da informação — Requisitos. Rio de Janeiro: ABNT, 2022.
+
+ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS (ABNT). ABNT NBR ISO/IEC 27002: Segurança da informação, segurança cibernética e proteção da privacidade — Controles de segurança da informação. Rio de Janeiro: ABNT, 2022.

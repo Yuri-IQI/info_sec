@@ -5,11 +5,16 @@ description = "Projeto Integrador: Segurança Aplicada ao Desenvolvimento"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "argon2-cffi>=25.1.0",
     "cryptography",
+    "email-validator>=2.3.0",
+    "fastapi>=0.162.2",
+    "uvicorn>=0.54.0",
 ]
 
 [dependency-groups]
 dev = [
+    "httpx>=0.28.1",
     "pytest",
 ]
 
@@ -17,4 +22,5 @@ dev = [
 package = false
 
 [tool.pytest.ini_options]
-testpaths = ["entrega-1"]
+testpaths = ["entrega-1", "entrega-2"]
+pythonpath = ["entrega-2"]

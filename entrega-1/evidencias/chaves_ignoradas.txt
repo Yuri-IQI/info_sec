@@ -1,1 +1,0 @@
-.gitignore:9:*.pem	entrega-1/keys/private_rsa_key.pem
