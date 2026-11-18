@@ -1,0 +1,17 @@
+{
+  "users": {
+    "teste.user": {
+      "algorithm": "pbkdf2-sha256",
+      "iterations": 600000,
+      "salt": "NDA261QA6E9AKQfAonQxqQ==",
+      "hash": "m1wqPtSKXQrxJGI3pwkJyUwPpkUt290iOoVPb7QEbmM="
+    },
+    "teste.user2": {
+      "algorithm": "pbkdf2-sha256",
+      "iterations": 600000,
+      "salt": "s+HgusC2EMhGDg+B8cAzAg==",
+      "hash": "q2j7tR80A/HAnOqsusTrnjteqa8b/XjBxz1FszY/3+o="
+    }
+  },
+  "signature": "e6P4UnKIsrMgtnsK+ynmlIqbgK7XGuT75C+DAVZ4ZzfkzKZpPNC2bu1q8297PEkUHBPPUUmVF9N2S8fTcHnGBQ=="
+}

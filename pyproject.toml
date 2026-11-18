@@ -23,4 +23,4 @@ package = false
 
 [tool.pytest.ini_options]
 testpaths = ["entrega-1", "entrega-2"]
-pythonpath = ["entrega-2"]
+pythonpath = ["entrega-2/_web"]
